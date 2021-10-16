@@ -35,6 +35,7 @@ type cacheFile struct {
 	Items []*Item `json:"items"`
 }
 
+// setInterval function sets new interval to Cache
 func (c *Cache) setInterval() chan<- bool {
 	ticker := time.NewTicker(c.options.SaveInterval)
 	stopChan := make(chan bool)
@@ -52,6 +53,7 @@ func (c *Cache) setInterval() chan<- bool {
 	return stopChan
 }
 
+// saveFiles function save files on given interval.
 func (c *Cache) saveFiles() {
 	logging.AppLogger.Info(config.MessageSavingFiles)
 
@@ -98,6 +100,7 @@ func (c *Cache) Get(key string) (*Item, bool) {
 	return item, true
 }
 
+// SetItem is a function that create new Item. Accepts *Item
 func (c *Cache) SetItem(item *Item) {
 	c.mutex.RLock()
 
@@ -108,6 +111,8 @@ func (c *Cache) SetItem(item *Item) {
 	c.mutex.RUnlock()
 }
 
+// Set is a function that create new Item.
+// Accepts key and value.
 func (c *Cache) Set(key string, value interface{}) {
 	c.mutex.RLock()
 
@@ -118,6 +123,7 @@ func (c *Cache) Set(key string, value interface{}) {
 	c.mutex.RUnlock()
 }
 
+// Flush is a function that flushes Cache.
 func (c *Cache) Flush() {
 	c.mutex.RLock()
 	c.items = map[string]*Item{}
@@ -146,13 +152,13 @@ func NewCache(options *CacheOptions) *Cache {
 
 	// Create if file does not exist.
 	if _, err := os.Stat(options.SaveLocation); os.IsNotExist(err) {
-		ioTools.CreateFolder(options.SaveLocation)
+		iotools.CreateFolder(options.SaveLocation)
 	} else {
-		files := ioTools.GetFiles(options.SaveLocation)
+		files := iotools.GetFiles(options.SaveLocation)
 
 		for _, file := range files {
 			if strings.Contains(file, config.AllowedConfigExt) {
-				ioTools.ReadFileAndProcess(file, func(param []byte) {
+				iotools.ReadFileAndProcess(file, func(param []byte) {
 					var file cacheFile
 
 					err := json.Unmarshal(param, &file)

@@ -24,7 +24,6 @@ func main() {
 
 	listenAddr := net.JoinHostPort(host, port)
 
-
 	c := entities.NewCache(&entities.CacheOptions{})
 
 	http.Handle("/api/cache/set", router.Set(c))

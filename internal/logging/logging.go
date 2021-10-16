@@ -13,6 +13,8 @@ var (
 	ErrorLogger = SetLogger(config.ErrorLogPath)
 )
 
+// SetLogger function gets a path and creates folder if file doesn't exist in that path.
+// Then creates a logger object. Logger's output is set to this file.
 func SetLogger(path string) *log.Logger {
 	logger := log.New()
 
@@ -28,5 +30,3 @@ func SetLogger(path string) *log.Logger {
 	logger.SetOutput(f)
 	return logger
 }
-
-

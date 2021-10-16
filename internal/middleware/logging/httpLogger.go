@@ -29,6 +29,9 @@ func (r *loggingResponseWriter) WriteHeader(statusCode int) {
 	r.responseData.status = statusCode
 }
 
+// HttpLogger function returns a http.Handler.
+// When a user send a http request, HttpLogger function logs detail of request.
+// Format: [statusCode] METHOD URL took "duration"
 func HttpLogger(h http.Handler) http.Handler {
 	loggingFn := func(rw http.ResponseWriter, req *http.Request) {
 		start := time.Now()
