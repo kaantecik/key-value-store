@@ -8,8 +8,11 @@ import (
 )
 
 var (
-	HttpLogger  = SetLogger(config.HTTPLogPath)
-	AppLogger   = SetLogger(config.AppLogPath)
+	// HttpLogger is a logger that logs all HTTP requests.
+	HttpLogger = SetLogger(config.HTTPLogPath)
+	// AppLogger is a logger that logs all app events.
+	AppLogger = SetLogger(config.AppLogPath)
+	// ErrorLogger is a logger that logs all errors.
 	ErrorLogger = SetLogger(config.ErrorLogPath)
 )
 

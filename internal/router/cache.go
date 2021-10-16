@@ -18,14 +18,18 @@ type getCacheBody struct {
 	Key string `json:"key"`
 }
 
+// Set is a http.Handler for setting new item to cache.
 func Set(c *entities.Cache) http.Handler {
 	return middleware.HttpLogger(set(c))
 }
 
+
+// Get is a http.Handler for getting item from cache.
 func Get(c *entities.Cache) http.Handler {
 	return middleware.HttpLogger(get(c))
 }
 
+// Flush is a http.Handler for flushing items from cache.
 func Flush(c *entities.Cache) http.Handler {
 	return middleware.HttpLogger(flush(c))
 }
