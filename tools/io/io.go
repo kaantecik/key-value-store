@@ -1,4 +1,4 @@
-package ioTools
+package iotools
 
 import (
 	"github.com/kaantecik/key-value-store/internal/logging"

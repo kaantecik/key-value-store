@@ -18,6 +18,7 @@ func CheckError(writer http.ResponseWriter, err error) {
 	}
 }
 
+// ParseRequestBody function gets body of request and returns parsed target.
 func ParseRequestBody(writer http.ResponseWriter, request *http.Request, target interface{}) {
 	data, err := ioutil.ReadAll(request.Body)
 	CheckError(writer, err)
@@ -26,6 +27,7 @@ func ParseRequestBody(writer http.ResponseWriter, request *http.Request, target 
 	CheckError(writer, err)
 }
 
+// SendResponse returns api response.
 func SendResponse(writer http.ResponseWriter, statusCode int, msg interface{}) {
 	writer.Header().Set("Content-Type", "application/json")
 	conv, e := json.Marshal(msg)
