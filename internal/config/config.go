@@ -14,11 +14,17 @@ const (
 	// DefaultHost represents host of the server.
 	DefaultHost = "0.0.0.0"
 
+	// DefaultSaveLocation is where project backup files are saved.
+	DefaultSaveLocation = "/tmp/" + Name
+
+	// DefaultSaveInterval represents interval when files are saved.
+	DefaultSaveInterval = 10 * time.Minute
+
 	// AllowedConfigExt represents extensions which app allowed.
 	AllowedConfigExt = "json"
 
 	// LogPath is where log files are saved.
-	LogPath = "/tmp/" + Name + "/logs"
+	LogPath = DefaultSaveLocation + "/logs"
 
 	// HTTPLogPath is where http logs are saved.
 	HTTPLogPath = LogPath + "/http.log"
@@ -28,10 +34,4 @@ const (
 
 	// AppLogPath is where app logs are saved.
 	AppLogPath = LogPath + "/app.log"
-
-	// DefaultSaveLocation is where project backup files are saved.
-	DefaultSaveLocation = "/tmp/" + Name
-
-	// DefaultSaveInterval represents interval when files are saved.
-	DefaultSaveInterval = 10 * time.Minute
 )

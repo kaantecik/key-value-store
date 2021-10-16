@@ -7,6 +7,7 @@ import (
 	"net/http"
 )
 
+// CheckError returns 403 if err is not nil.
 func CheckError(writer http.ResponseWriter, err error) {
 	if err != nil {
 		logging.ErrorLogger.Error(err)

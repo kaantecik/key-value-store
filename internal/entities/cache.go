@@ -12,6 +12,7 @@ import (
 	"time"
 )
 
+// Cache is main part of app.
 type Cache struct {
 	id      string
 	items   map[string]*Item
@@ -19,6 +20,7 @@ type Cache struct {
 	options *CacheOptions
 }
 
+// CacheOptions defines the options for Cache.
 type CacheOptions struct {
 	// SaveInterval represents interval of saving data.
 	//
@@ -150,7 +152,11 @@ func NewCache(options *CacheOptions) *Cache {
 
 	cache.setInterval()
 
-	// Create if file does not exist.
+	if _, err := os.Stat(config.DefaultSaveLocation); os.IsNotExist(err) {
+		iotools.CreateFolder(config.DefaultSaveLocation)
+	}
+
+	// Create if file does not exist
 	if _, err := os.Stat(options.SaveLocation); os.IsNotExist(err) {
 		iotools.CreateFolder(options.SaveLocation)
 	} else {
