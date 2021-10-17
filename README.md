@@ -37,3 +37,7 @@ In memory key-value store olarak çalışan bir REST-API servisi.
 |  DELETE  |  /api/cache/flush  |         -          |
 |----------|--------------------|--------------------|         
 ```
+
+[Heroku üzerinde çalışan servisin linki](https://limitless-bayou-61923.herokuapp.com/)
+
+[Go Report Sonucu](https://goreportcard.com/report/github.com/kaantecik/key-value-store)
