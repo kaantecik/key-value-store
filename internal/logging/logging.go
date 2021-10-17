@@ -24,6 +24,10 @@ func SetLogger(path string) *log.Logger {
 	logger.SetFormatter(&log.TextFormatter{ForceColors: true})
 	logger.SetLevel(log.TraceLevel)
 
+	if _, err := os.Stat(config.DefaultSaveLocation); os.IsNotExist(err) {
+		os.Mkdir(config.DefaultSaveLocation, 0755)
+	}
+
 	if _, err := os.Stat(config.LogPath); os.IsNotExist(err) {
 		os.Mkdir(config.LogPath, 0755)
 	}

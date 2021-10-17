@@ -157,8 +157,8 @@ func NewCache(options *CacheOptions) *Cache {
 	}
 
 	// Create if file does not exist
-	if _, err := os.Stat(options.SaveLocation); os.IsNotExist(err) {
-		iotools.CreateFolder(options.SaveLocation)
+	if _, err := os.Stat(config.LogPath); os.IsNotExist(err) {
+		iotools.CreateFolder(config.LogPath)
 	} else {
 		files := iotools.GetFiles(options.SaveLocation)
 

@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"github.com/kaantecik/key-value-store/internal/logging"
 	"net"
 	"net/http"
@@ -30,6 +31,7 @@ func main() {
 	http.Handle("/api/cache/get", router.Get(c))
 	http.Handle("/api/cache/flush", router.Flush(c))
 
-	logging.HttpLogger.Infof("Listening on :%s", listenAddr)
+	fmt.Printf("Listening on %s. Check %s directory for logs.", listenAddr, config.LogPath)
+	logging.HttpLogger.Infof("Listening on %s", listenAddr)
 	logging.HttpLogger.Fatalln(http.ListenAndServe(listenAddr, nil))
 }
